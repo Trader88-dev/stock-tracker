@@ -4,6 +4,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+// Ping pour réveiller le serveur
+router.get('/ping', (req, res) => {
+  res.json({ status: 'awake' });
+});
+
 // Register
 router.post('/register', async (req, res) => {
   try {
