@@ -17,6 +17,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // 🔥 Ajoute cette ligne ici
 app.use(express.json());
 
 // MongoDB
