@@ -6,7 +6,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express(); // 🔥 DOIT ÊTRE AVANT TOUT app.use
-
+app.get('/', (req, res) => {
+  res.send('OK BACKEND');
+});
 // 🔥 CORS
 const corsOptions = {
   origin: ['https://stockradar-live.netlify.app', 'http://localhost:3000'],
