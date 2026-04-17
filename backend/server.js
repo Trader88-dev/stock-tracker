@@ -1,4 +1,5 @@
 const express = require('express');
+console.log("🔥 VERSION DEPLOY ACTIVE");
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
