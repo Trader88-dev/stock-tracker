@@ -17,7 +17,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // 🔥 Ajoute cette ligne ici
+app.options('/{*path}', cors(corsOptions)); // 🔥 Syntaxe Express 5
 app.use(express.json());
 
 // MongoDB
