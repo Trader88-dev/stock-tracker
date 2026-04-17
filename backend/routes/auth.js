@@ -6,9 +6,8 @@ const User = require('../models/User');
 
 // Ping pour réveiller le serveur
 router.get('/ping', (req, res) => {
-  res.json({ status: 'awake' });
+  res.json({ status: 'ok' });
 });
-
 // Register
 router.post('/register', async (req, res) => {
   try {

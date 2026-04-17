@@ -6,6 +6,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express(); // 🔥 DOIT ÊTRE AVANT TOUT app.use
+app.all('*', (req, res) => {
+  res.json({
+    msg: "SERVER REACHABLE",
+    url: req.originalUrl
+  });
+});
 app.get('/', (req, res) => {
   res.send('OK BACKEND');
 });
