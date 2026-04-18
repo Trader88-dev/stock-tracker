@@ -6,9 +6,11 @@ const axios = require('axios');
 router.get('/search/:symbol', async (req, res) => {
   try {
     const { symbol } = req.params;
+    console.log('🔍 Recherche:', symbol);
     const response = await axios.get(
       `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_KEY}`
     );
+    console.log('📊 Réponse Alpha Vantage:', JSON.stringify(response.data));
 
     const quote = response.data['Global Quote'];
     if (!quote || !quote['05. price']) {
@@ -26,6 +28,7 @@ router.get('/search/:symbol', async (req, res) => {
     });
 
   } catch (err) {
+    console.log('❌ Erreur:', err.message);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
@@ -34,9 +37,11 @@ router.get('/search/:symbol', async (req, res) => {
 router.get('/history/:symbol', async (req, res) => {
   try {
     const { symbol } = req.params;
+    console.log('📈 Historique:', symbol);
     const response = await axios.get(
       `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_KEY}`
     );
+    console.log('📊 Réponse historique:', JSON.stringify(response.data).slice(0, 200));
 
     const timeSeries = response.data['Time Series (Daily)'];
     if (!timeSeries) {
@@ -54,6 +59,7 @@ router.get('/history/:symbol', async (req, res) => {
     res.json(history);
 
   } catch (err) {
+    console.log('❌ Erreur historique:', err.message);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
